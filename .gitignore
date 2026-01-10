@@ -1,0 +1,31 @@
+# Keil MDK (ARM) 编译产生的中间垃圾文件
+*.o
+*.d
+*.crf
+*.dep
+*.map
+*.htm
+*.lnp
+*.sct
+*.lst
+*.axf
+*.hex
+*.bin
+*.iex
+*.lib
+
+# Keil生成的列表和对象文件夹 (通常位于MDK-ARM目录下)
+Listings/
+Objects/
+
+# Keil 工程配置产生的临时文件 (非常重要，否则每次打开Keil都会显示文件变动)
+*.uvguix.*
+*.uvoptx
+*.bak
+
+# J-Link 调试产生的日志
+JLinkLog.txt
+*.jlink
+
+# STM32CubeMX 生成的备份文件
+*.mxproject
