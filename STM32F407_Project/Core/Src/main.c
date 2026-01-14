@@ -19,11 +19,14 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "can.h"
+#include "i2c.h"
 #include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#include "STM32F4XX_OLED.h"
 
 /* USER CODE END Includes */
 
@@ -90,12 +93,21 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM3_Init();
   MX_CAN1_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
   CAN_User_Init(&hcan1);
 
+  OLED_Init(); 
+
+  OLED_Clear();
+
   // 使能定时器3中断
   HAL_TIM_Base_Start_IT(&htim3);
+
+  OLED_ShowString(0, 0, "STM32F407ZET6"); 
+  OLED_ShowString(0, 2, "PB8=SCL PB9=SDA");
+  OLED_ShowString(0, 4, "HAL-NoRTOS");
 
   /* USER CODE END 2 */
 

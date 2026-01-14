@@ -46,6 +46,9 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 
+// 定义任务句柄
+TaskHandle_t myTaskHandle = NULL;
+
 /* USER CODE END Variables */
 /* Definitions for StartTask */
 osThreadId_t StartTaskHandle;

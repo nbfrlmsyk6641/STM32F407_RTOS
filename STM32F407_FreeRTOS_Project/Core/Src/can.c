@@ -36,6 +36,8 @@ void MX_CAN1_Init(void)
 
   /* USER CODE BEGIN CAN1_Init 1 */
 
+  // CAN波特率配置为500kbps
+
   /* USER CODE END CAN1_Init 1 */
   hcan1.Instance = CAN1;
   hcan1.Init.Prescaler = 6;
