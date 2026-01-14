@@ -26,6 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "STM32F4xx_OLED.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,6 +62,8 @@ const osThreadAttr_t StartTask_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
+
+void Self_Define_Task01(void *argument);
 
 /* USER CODE END FunctionPrototypes */
 
@@ -111,6 +115,9 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+
+  xTaskCreate(Self_Define_Task01, "MyTask01", 128, NULL, osPriorityNormal, NULL);
+
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -132,6 +139,8 @@ void StartTask01(void *argument)
   /* Infinite loop */
   for(;;)
   {
+    // 每隔1秒切换一次LED状态
+
     HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 
     osDelay(1000);
@@ -141,6 +150,17 @@ void StartTask01(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+void Self_Define_Task01(void *argument)
+{
+  for (;;)
+  {
+    // 每隔2s执行一次 OLED_Task 函数
+
+    OLED_Task();
+
+    osDelay(2000);
+  }
+}
 
 /* USER CODE END Application */
 

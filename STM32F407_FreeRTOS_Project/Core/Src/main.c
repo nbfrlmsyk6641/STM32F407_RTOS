@@ -20,11 +20,14 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "can.h"
+#include "i2c.h"
 #include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#include "STM32F4xx_OLED.h"
 
 /* USER CODE END Includes */
 
@@ -92,9 +95,12 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM3_Init();
   MX_CAN1_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
   CAN_User_Init(&hcan1);
+  OLED_Init();
+  OLED_Clear();
 
   // 使能定时器3中断
   HAL_TIM_Base_Start_IT(&htim3);
