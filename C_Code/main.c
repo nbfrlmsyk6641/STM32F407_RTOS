@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// * 测试环境用的代码 *//
+
 int main() {
     int sum = 0;
     printf("开始计算...\n");
