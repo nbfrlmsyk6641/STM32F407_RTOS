@@ -21,6 +21,7 @@ struct List
 void InitList(struct List *plist, char *list_name);
 void AddListNode(struct List *plist, struct person *new_person);
 void DeleteListNode(struct List *plist, struct person *person);
+void SortList(struct List *plist);
 void PrintList(struct List *plist);
 
 int main()
@@ -30,12 +31,12 @@ int main()
     struct List FirstList;
 
     struct person p[] = {
-        {"Person_1", 20, 1, NULL},
+        {"Person_1", 40, 1, NULL},
         {"Person_2", 22, 0, NULL},
-        {"Person_3", 24, 1, NULL},
+        {"Person_3", 29, 1, NULL},
         {"Person_4", 26, 0, NULL},
-        {"Person_5", 28, 1, NULL},
-        {"Person_6", 30, 0, NULL},
+        {"Person_5", 27, 1, NULL},
+        {"Person_6", 55, 0, NULL},
         {"Person_7", 32, 1, NULL},
         {"Person_8", 34, 0, NULL},
         {NULL, 0, 0, NULL}
@@ -55,10 +56,20 @@ int main()
     //* 打印链表 *//
     PrintList(&FirstList);
 
+    //* 链表排序 *//
+    SortList(&FirstList);
+
+    printf("---- 链表排序后 ----\n");
+
+    //* 打印排序后的链表 *//
+
+    PrintList(&FirstList);
+
+
     printf("---- 删除链表节点 ----\n");
 
     //* 从链表中删除指定节点 *//
-    DeleteListNode(&FirstList, &p[10]);
+    DeleteListNode(&FirstList, &p[2]);
 
     //* 打印删除后的链表 *//
     PrintList(&FirstList);
@@ -133,6 +144,54 @@ void DeleteListNode(struct List *plist, struct person *person)
     {
         //* 要删除的不是第一个节点，前一个节点的 next 指针指向要删除节点的下一个节点 *//
         prev->next = p->next;
+    }
+}
+
+//* 链表排序，使用冒泡排序 *//
+void SortList(struct List *plist)
+{   
+    char *temp_name;
+    int temp_age;
+    int temp_sex;
+
+    struct person *prev;
+    struct person *next;
+
+    prev = plist->next;
+
+    if (prev == NULL)
+    {
+        return;
+    }
+
+    while (prev != NULL)
+    {
+        next = prev->next;
+
+        while (next != NULL)
+        {   
+            //* 按照从小到大的顺序排序 *//
+            if (prev->age > next->age)
+            {   
+                //* 交换值，交换节点目前的代码下实现太复杂 *//
+                temp_name = prev->name;
+                temp_age = prev->age;
+                temp_sex = prev->sex;
+
+                prev->name = next->name;
+                prev->age = next->age;
+                prev->sex = next->sex;
+
+                next->name = temp_name;
+                next->age = temp_age;
+                next->sex = temp_sex;
+            }
+
+            //* 移动链表继续比较 *//
+            next = next->next;
+        }
+        //* 移动链表继续比较 *//
+        prev = prev->next;
     }
 }
 
