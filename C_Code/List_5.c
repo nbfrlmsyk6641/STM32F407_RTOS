@@ -88,7 +88,7 @@ void AddListNode(struct List *plist, struct person *new_node)
         last = last->next;
     }
 
-    /* 找出最后一项 */
+    /* 跳出循环代表找出最后一项 */
     last->next = new_node;
     new_node->next = NULL;
 }
@@ -128,6 +128,7 @@ void DeleteListNode(struct List *plist, struct person *del_person)
     }
 }
 
+/* 在指定节点后面添加节点 */
 void AddListNodeAfter(struct person *prev, struct person *new_person)
 {
     new_person->next = prev->next;
