@@ -135,7 +135,7 @@ void AddListNodeAfter(struct person *prev, struct person *new_person)
     prev->next = new_person;
 }
 
-/* 链表排序函数（冒泡排序） */
+/* 链表排序函数（冒泡排序），写的比较复杂 */
 void SortList(struct List *plist)
 {
     struct person *prev1;
